@@ -24,6 +24,7 @@ For this Demo, I installed latest virtualbox and used an installed ubuntu provid
 5. For machine folder select where you want this VM to be saved
 6. The type will automatically switch to Linux
 7. The version will automatically switch to Ubuntu, Press Next
+
 ![image](https://user-images.githubusercontent.com/29349049/110809673-f8920d00-8239-11eb-8320-1a9c945c70f1.png)
 
 9. For memory I gave it 6144 MB, 6GB total, Press Next
@@ -36,6 +37,7 @@ For this Demo, I installed latest virtualbox and used an installed ubuntu provid
 16. Go into Systems > Processor > change to 2 if you have it, otherwise leave it as 1
 17. Press Ok
 18. Press the Start button to power on the VM
+
 ![image](https://user-images.githubusercontent.com/29349049/110809782-13648180-823a-11eb-89f2-8486758c4c21.png)
 
 20. Password for the user osboxes is osboxes.org
@@ -59,7 +61,7 @@ k8dash| TCP | 127.0.0.1 | 31081 | 10.0.2.15 | 31081
 
 27. Check your rules with the table above. Press Ok Twice to finish network configuration.
 28. Now we open mputty portable
-29. Click on the computer icon under the word Server and fill out the data as shared in table below.
+29. Click on the computer icon under the word Server and fill out the data as shared in table below
 
 Item | Value
 ---- | -----
@@ -72,7 +74,7 @@ user name | osboxes
 password | osboxes.org
 30. You can check the box to save password and press Ok.
 
-You can keep this session of mputty up for the next task
+You can keep this session of mputty up for the next task.
 
 
 ## Task 1: Update Systems
@@ -101,6 +103,7 @@ In Task 2, we will be installing gitlab-ce.
 4. Install gitlab CE -> sudo apt -y install gitlab-ce
 5. Configure and start gitlab -> sudo gitlab-ctl reconfigure
 6. Check the gitlab status -> sudo gitlab-ctl status
+
 ![image](https://user-images.githubusercontent.com/29349049/110809997-3a22b800-823a-11eb-890c-db787022878a.png)
 
 8. Configure the /etc/hosts -> sudo sed -i 's/localhost/localhost\ gitlab.example.com/g' /etc/hosts && cat /etc/hosts
@@ -109,7 +112,7 @@ In Task 2, we will be installing gitlab-ce.
 11. You will be prompted to type in a password, I used friend123 for this demo
 12. Afterwards, you can login using user root and password friend123
 
-Please keep this browser open for the next section
+Please keep this browser open for the next section.
 
 
 ## Task 3: Create a demo group/project in gitlab
@@ -173,6 +176,7 @@ func main() {
     1. Type in user and press enter
 	2. Type in password and press enter
 
+
 ## Task 4: Build the app and expose ($ go run) the service to 8081 port
 In task 4, we will be building the web app using golang.
 
@@ -181,7 +185,12 @@ In task 4, we will be building the web app using golang.
 3. Check the output using windows cmd -> curl 127.0.0.1:8081
     1. You can also put this URL into your browser -> 127.0.0.1:8081
     2. Output -> Go Web Hello World!
+
+![image](https://user-images.githubusercontent.com/29349049/110835785-1bc9b600-8254-11eb-9f4f-426ea66ee893.png)
+
+
 4. After you are done verifying, you can go back to the mputty control and input Ctrl+C to close the webapp program.
+
 
 ## Task 5: Install docker
 In Task 5, we will be installing docker community edition.
@@ -200,6 +209,7 @@ In Task 5, we will be installing docker community edition.
    1. Output -> REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 
 Great, we have docker installed and now we can move to the next task.
+
 
 ## Task 6: Run the app in container
 In task 6, we will be building docker image and deploying a docker container from our golang webapp
@@ -238,14 +248,23 @@ CMD ["/build/hello-world"]
 7. Modify the file to use a different port -> sed -i 's/":8081"/":8085"/g' hello-world.go && cat hello-world.go
 8. Build docker image -> docker build -t sma88/go-web-hello-world:v0.1 .
 9. Check your image -> docker image ls
-10. Run docker image -> docker run -p 8085:8085 -tid sma88/go-web-hello-world:v0.1
-11. Check your container -> docker ps
-12. Test the docker webapp using windows cmd or the browser-> curl http://127.0.0.1:8085
+
+![image](https://user-images.githubusercontent.com/29349049/110836202-a27e9300-8254-11eb-84c1-a8ff95d9333a.png)
+
+11. Run docker image -> docker run -p 8085:8085 -tid sma88/go-web-hello-world:v0.1
+12. Check your container -> docker ps
+
+![image](https://user-images.githubusercontent.com/29349049/110836263-b4603600-8254-11eb-84e9-4b20f781758c.png)
+
+14. Test the docker webapp using windows cmd or the browser-> curl 127.0.0.1:8085
     1. Output -> Go Web Hello World!
-13. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
-14. Add all for posting to repo -> git add --all
-15. Write a message for commit -> git commit -m "Finished docker image of golang"
-16. Push the code to the REPO -> git push origin master
+
+![image](https://user-images.githubusercontent.com/29349049/110836336-c6da6f80-8254-11eb-9e53-7ffc6492349c.png)
+
+15. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
+16. Add all for posting to repo -> git add --all
+17. Write a message for commit -> git commit -m "Finished docker image of golang"
+18. Push the code to the REPO -> git push origin master
     1. Type in user and press enter
 	2. Type in password and press enter	
 Great! Now we also have the webapp deploying through docker.
@@ -259,6 +278,8 @@ Please have a docker account created and with repository named go-web-hello-worl
 	2. Type in password and press Enter
 2. Push docker image to remote repo -> docker push <user>/<tag of image>:<version>
    1. My example: docker push sma88/go-web-hello-world:v0.1
+
+![image](https://user-images.githubusercontent.com/29349049/110835932-49aefa80-8254-11eb-8053-c076cd6f8cd8.png)
 
 You can clean up the environment using the commands below.
 ```

@@ -1,6 +1,4 @@
-# go-web-hello-world
-
-# Demo Project
+# Demo Project - go-web-hello-world
 
 
 ## Task 0 Install a ubuntu 16.04 server 64-bit
@@ -12,12 +10,13 @@ For this Demo, I installed latest virtualbox and used an installed ubuntu provid
 	- 2 vCPUs
 	- 6 GB Memory
 	- 20GB disk space
-2. Download the programs below:
+2. Download the programs below and install items one and two on your machine:
    1. virtual box - https://www.virtualbox.org/wiki/Downloads
-   2. mputty for ssh (portable) - https://ttyplus.com/downloads/
-   3. VDI image of Ubuntu - https://sourceforge.net/projects/osboxes/files/v/vb/55-U-u/16.04/16.04.6/1604.664.7z/download
-3. Extract with 7zip
-3. Open Virtualbox Manager
+   2. 7zip - https://www.7-zip.org/download.html
+   3. mputty for ssh (portable) - https://ttyplus.com/downloads/
+   4. VDI image of Ubuntu - https://sourceforge.net/projects/osboxes/files/v/vb/55-U-u/16.04/16.04.6/1604.664.7z/download
+3. Use 7zip to extract the ubuntu VDI
+3. Open Virtualbox Manager and select New
 4. Give it a name - "ubuntu-k8-demo"
 5. For machine folder select where you want this VM to be saved
 6. The type will automatically switch to Linux
@@ -73,12 +72,12 @@ You can keep this session of mputty up for the next task
 In Task 1, we will be updating Ubuntu's Kernel to the latest for version 16. If your system has extra space for extra disk. You can also apply a backup to your system before upgrading. Please follow instructions from https://www.thegeekdiary.com/how-to-backup-linux-os-using-dd-command/
 
 1. Check current version -> uname -r
-   1. output -> 4.15.0-136-generic
+   1. Output -> 4.15.0-136-generic
 2. Update repository information -> sudo apt-get update
    1. for all future instances of using sudo, it might prompt for password, please type in the users password. for osboxes it is osboxes.org
 3. To upgrade the kernel -> sudo apt-get install linux-image-generic-hwe-16.04
    1. Press Y to accept
-   2. output -> linux-image-generic-hwe-16.04 is already the newest version (4.15.0.136.132)
+   2. Output -> linux-image-generic-hwe-16.04 is already the newest version (4.15.0.136.132)
    3. If you needed to update, please reboot after -> sudo reboot
 
 At the time of this write up, we are on the latest. So we can move on to next task.
@@ -116,19 +115,19 @@ In task 3, we will be creating a group, a new project, and configuring a repo fo
 7. Click on Create blank project
 8. Project name is go-web-hello-world
 9. Set visibility to Public
-10. check box to initialize a README file.
+10. Check box to initialize a README file.
 11. Click on Create Project
 12. scroll down and click on the blue button Copy HTTP clone URL
 13. Now going back to mputty
-14. create a directory -> mkdir ~/project
-15. move into the directory -> cd ~/project
-16. configure git with user -> git config --global user.name root
-17. configure git with email -> git config --global user.email root@example.com
-18. clone the new repo created ->  git clone http://gitlab.example.com/demo/go-web-hello-world.git
+14. Create a directory -> mkdir ~/project
+15. Move into the directory -> cd ~/project
+16. Configure git with user -> git config --global user.name root
+17. Configure git with email -> git config --global user.email root@example.com
+18. Clone the new repo created ->  git clone http://gitlab.example.com/demo/go-web-hello-world.git
 19. Download package to install golang -> wget https://golang.org/dl/go1.16.linux-amd64.tar.gz
 20. Cleanup any old golang and extract golang -> sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
 21. Check golang -> go version
-   1. output -> go version go1.16 linux/amd64
+   1. Output -> go version go1.16 linux/amd64
    2. if you get "The program 'go' is currently not installed.." it means the link wasn't created.
    3. create softlink -> sudo ln -s /usr/local/go/bin/go /usr/bin/go
 22. Move in git working directory -> cd ~/project/go-web-hello-world
@@ -168,7 +167,7 @@ In task 4, we will be building the web app using golang.
 
 1. Build our web app -> cd ~/project/go-web-hello-world/golang && go build hello-world.go
 2. Run our webapp -> ./hello-world
-3. check the output using command line -> curl 127.0.0.1:8081
+3. Check the output using command line -> curl 127.0.0.1:8081
     1. Output -> Go Web Hello World!
 
 
@@ -186,7 +185,7 @@ In Task 5, we will be installing docker community edition.
 7. add current user to docker group -> sudo usermod -aG docker osboxes
 8. relog to have the group activated
 9. check that you can run docker command line -> docker image ls
-   1. output -> REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+   1. Output -> REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 
 Great, we have docker installed and now we can move to the next task.
 
@@ -249,9 +248,11 @@ Please have a docker account created and with repository named go-web-hello-worl
 2. Push docker image to remote repo -> docker push <user>/<tag of image>:version
    1. my example: docker push sma88/go-web-hello-world:v0.1
 
- You can clear up the environment using the commands below.
+You can clear up the environment using the commands below.
+```
 for x in $(sudo docker ps |grep sma |awk '{ print $1 }'); do sudo docker rm -f $x; done
 for x in $(sudo docker image ls |grep sma |awk '{print $3}'); do sudo docker rmi -f $x; done
+```
 
-Good job!
+## Good job!
 

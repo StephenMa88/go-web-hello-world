@@ -14,8 +14,14 @@ In task 9, we will be installing a single node kubernetes inside our ubuntu VM a
 6. Turn off swap -> sudo swapoff -a
 7. Update repository information -> sudo apt update
 8. Install latest packages -> sudo apt install -y apt-transport-https ca-certificates curl
-9. Download the google cloud public signing key -> sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-10. Add the kubernetes apt repository -> echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+9. Download the google cloud public signing key
+```
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+```
+10. Add the kubernetes apt repository
+```
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
 11. Update repository information -> sudo apt update
 12. Install latest packages -> sudo apt install -y kubelet kubeadm kubectl
 13. Put these programs on hold -> sudo apt-mark hold kubelet kubeadm kubectl
@@ -30,7 +36,7 @@ In task 9, we will be installing a single node kubernetes inside our ubuntu VM a
 22. Write a message for commit -> git commit -m "added admin.conf after kubernetes install"
 23. Push the code to the REPO -> git push origin master
     1. Type in user and press enter
-	2. Type in password and press enter
+    2. Type in password and press enter
 24. Remove taint so we can deploy containers on master node -> kubectl taint nodes --all node-role.kubernetes.io/master-
 25. Change ownership of file -> sudo chown $(id -u):$(id -g) /etc/kubernetes/kubelet.conf
 26. Deploy tigera container -> kubectl apply -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
@@ -53,7 +59,9 @@ In task 10, we will be deploying a kubernetes container using our previous docke
 8. Deploy the container -> kubectl apply -f go-web-deploy.yaml
 9. Expose the port for the container -> kubectl apply -f go-web-nodeport.yaml
 10. Test the container webapp -> curl 127.0.0.1:31080
+
 ![image](https://user-images.githubusercontent.com/29349049/110834157-0e133100-8252-11eb-9e96-38c32826aa01.png)
+
 11. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
 12. Add all for posting to repo -> git add --all
 13. Write a message for commit -> git commit -m "deployed golang container on k8"
@@ -117,26 +125,22 @@ In task 12, we will be generating a token for the dashboard login.
 ```
 kubectl create serviceaccount dashboard-admin-sa && kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa
 ```
-3. Save token info to a file -> kubectl describe secret $(kubectl get secrets |grep dash |awk {'print $1}') > dash-token.txt
-4. Display the token -> cat dash-token.txt
-5. Copy the token info and paste it into the browser and press Sign in
+2. Save token info to a file -> kubectl describe secret $(kubectl get secrets |grep dash |awk {'print $1}') > dash-token.txt
+3. Display the token -> cat dash-token.txt
+4. Copy the token info and paste it into the browser and press Sign in
 
 ![image](https://user-images.githubusercontent.com/29349049/110834633-a01b3980-8252-11eb-8eef-92972955ba52.png)
 
-6. You have now successfuly finished deploying the dashboard
+5. You have now successfuly finished deploying the dashboard
 
 ![image](https://user-images.githubusercontent.com/29349049/110834822-e375a800-8252-11eb-81fc-f1339ea88406.png)
 
-7. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
-8. Add all for posting to repo -> git add --all
-9. Write a message for commit -> git commit -m "deployed dashboard UI and documented steps and saved token"
-10. Push the code to the REPO -> git push origin master
+6. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
+7. Add all for posting to repo -> git add --all
+8. Write a message for commit -> git commit -m "deployed dashboard UI and documented steps and saved token"
+9. Push the code to the REPO -> git push origin master
     1. Type in user and press enter
     2. Type in password and press enter
 
-## Great Job Everyone!
-
-
-
-
+## Great Job Everyone! Hope you enjoyed this demo.
 

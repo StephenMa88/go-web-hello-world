@@ -1,5 +1,8 @@
 # Demo Project - go-web-hello-world
+There are 14 tasks total. Tasks 0-7 will be covered in this README. Tasks 9-12 README are around kubernetes, which can be found inside the k8-golang folder.
+You can find sample code for tasks 0-7 in the golang and docker-golang folder.  You might notice that task 8 and 13 isn't listed, those tasks were documentation tasks in the form of README, so you can ignore those. Please do the tasks in order as we will be reusing the files from previous tasks.
 
+Let's begin!
 
 ## Task 0 Install a ubuntu 16.04 server 64-bit
 For this Demo, I installed latest virtualbox and used an installed ubuntu provided by osboxes.org
@@ -20,26 +23,30 @@ For this Demo, I installed latest virtualbox and used an installed ubuntu provid
 4. Give it a name - "ubuntu-k8-demo"
 5. For machine folder select where you want this VM to be saved
 6. The type will automatically switch to Linux
-7. The version will automatically siwthc to Ubuntu, Press Next
-8. For memory I gave it 6144 MB, 6GB total, Press Next
-9. Select "Use an existing virtual hard disk file" and Press the folder with green arrow button
-10. Press Add and Browse for the extracted vdi image from osboxes.
-11. Select the VDI and press Open
-12. select the VDI and press Choose
-13. Press Create
-14. After the VM finishes building, select the VM and press on Settings
-15. Go into Systems > Processor > change to 2 if you have it, otherwise leave it as 1
-16. Press Ok
-17. Press the Start button to power on the VM
-18. Password for the user osboxes is osboxes.org
-19. after logging in, click on the first top icon on the left side bar
-20. type in terminal and press enter to open up the CLI
-21. type in ifconfig to find the IP of the enp0s3, for me it was 10.0.2.15
-22. Now we go back to the virtualbox manager and open up the settings for the VM again.
-23. Now we will be exposing some ports so we can see the results of the demo
-24. Click on Network > Adapter 1.
-25. Keep it as Attached to NAT and click on Advanced and then Port Forwarding.
-26. Click on the green plus on the right side six times and fill out the rows as display below.
+7. The version will automatically switch to Ubuntu, Press Next
+![image](https://user-images.githubusercontent.com/29349049/110809673-f8920d00-8239-11eb-8320-1a9c945c70f1.png)
+
+9. For memory I gave it 6144 MB, 6GB total, Press Next
+10. Select "Use an existing virtual hard disk file" and Press the folder with green arrow button
+11. Press Add and Browse for the extracted vdi image from osboxes.
+12. Select the VDI and press Open
+13. select the VDI and press Choose
+14. Press Create
+15. After the VM finishes building, select the VM and press on Settings
+16. Go into Systems > Processor > change to 2 if you have it, otherwise leave it as 1
+17. Press Ok
+18. Press the Start button to power on the VM
+![image](https://user-images.githubusercontent.com/29349049/110809782-13648180-823a-11eb-89f2-8486758c4c21.png)
+
+20. Password for the user osboxes is osboxes.org
+21. after logging in, click on the first top icon on the left side bar
+22. type in terminal and press enter to open up the CLI
+23. type in ifconfig to find the IP of the enp0s3, for me it was 10.0.2.15
+24. Now we go back to the virtualbox manager and open up the settings for the VM again.
+25. Now we will be exposing some ports so we can see the results of the demo
+26. Click on Network > Adapter 1.
+27. Keep it as Attached to NAT and click on Advanced and then Port Forwarding.
+28. Click on the green plus on the right side six times and fill out the rows as display below.
 
 Name | Protocol | Host IP | Host Port | Guest IP | Guest Port
 ---- | -------- | ------- | --------- | -------- | ----------
@@ -80,6 +87,8 @@ In Task 1, we will be updating Ubuntu's Kernel to the latest for version 16. If 
    2. Output -> linux-image-generic-hwe-16.04 is already the newest version (4.15.0.136.132)
    3. If you needed to update, please reboot after -> sudo reboot
 
+![image](https://user-images.githubusercontent.com/29349049/110809885-25462480-823a-11eb-9c29-8c853defb9e0.png)
+
 At the time of this write up, we are on the latest. So we can move on to next task.
 
 
@@ -92,8 +101,10 @@ In Task 2, we will be installing gitlab-ce.
 4. Install gitlab CE -> sudo apt -y install gitlab-ce
 5. Configure and start gitlab -> sudo gitlab-ctl reconfigure
 6. Check the gitlab status -> sudo gitlab-ctl status
-7. Configure the /etc/hosts -> sudo sed -i 's/localhost/localhost\ gitlab.example.com/g' /etc/hosts && cat /etc/hosts
-8. Configure the namesaver -> sudo sed -i 's/127.0.1.1/8.8.8.8/g' /etc/resolv.conf && cat /etc/resolv.conf
+![image](https://user-images.githubusercontent.com/29349049/110809997-3a22b800-823a-11eb-890c-db787022878a.png)
+
+8. Configure the /etc/hosts -> sudo sed -i 's/localhost/localhost\ gitlab.example.com/g' /etc/hosts && cat /etc/hosts
+9. Configure the namesaver -> sudo sed -i 's/127.0.1.1/8.8.8.8/g' /etc/resolv.conf && cat /etc/resolv.conf
 10. Using Browser of your choice type in 127.0.0.1:8080 and press Enter
 11. You will be prompted to type in a password, I used friend123 for this demo
 12. Afterwards, you can login using user root and password friend123
@@ -167,9 +178,10 @@ In task 4, we will be building the web app using golang.
 
 1. Build our web app -> cd ~/project/go-web-hello-world/golang && go build hello-world.go
 2. Run our webapp -> ./hello-world
-3. Check the output using command line -> curl 127.0.0.1:8081
-    1. Output -> Go Web Hello World!
-
+3. Check the output using windows cmd -> curl 127.0.0.1:8081
+    1. You can also put this URL into your browser -> 127.0.0.1:8081
+    2. Output -> Go Web Hello World!
+4. After you are done verifying, you can go back to the mputty control and input Ctrl+C to close the webapp program.
 
 ## Task 5: Install docker
 In Task 5, we will be installing docker community edition.
@@ -182,9 +194,9 @@ In Task 5, we will be installing docker community edition.
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 5. Update repository information -> sudo apt update
 6. Install docker -> sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-7. add current user to docker group -> sudo usermod -aG docker osboxes
-8. relog to have the group activated
-9. check that you can run docker command line -> docker image ls
+7. Add current user to docker group -> sudo usermod -aG docker osboxes
+8. Relog to have the group activated
+9. Check that you can run docker command line -> docker image ls
    1. Output -> REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 
 Great, we have docker installed and now we can move to the next task.
@@ -228,7 +240,7 @@ CMD ["/build/hello-world"]
 9. Check your image -> docker image ls
 10. Run docker image -> docker run -p 8085:8085 -tid sma88/go-web-hello-world:v0.1
 11. Check your container -> docker ps
-12. Test the docker webapp -> curl http://127.0.0.1:8085
+12. Test the docker webapp using windows cmd or the browser-> curl http://127.0.0.1:8085
     1. Output -> Go Web Hello World!
 13. We can now check in our code, but let's first check -> cd ~/project/go-web-hello-world/ && git status
 14. Add all for posting to repo -> git add --all
@@ -245,14 +257,27 @@ Please have a docker account created and with repository named go-web-hello-worl
 1. Login to Docker -> docker login
     1. Type in user and press Enter
 	2. Type in password and press Enter
-2. Push docker image to remote repo -> docker push <user>/<tag of image>:version
-   1. my example: docker push sma88/go-web-hello-world:v0.1
+2. Push docker image to remote repo -> docker push <user>/<tag of image>:<version>
+   1. My example: docker push sma88/go-web-hello-world:v0.1
 
-You can clear up the environment using the commands below.
+You can clean up the environment using the commands below.
 ```
 for x in $(sudo docker ps |grep sma |awk '{ print $1 }'); do sudo docker rm -f $x; done
 for x in $(sudo docker image ls |grep sma |awk '{print $3}'); do sudo docker rmi -f $x; done
 ```
 
 ## Good job!
+
+## Helpful Guides
+1. https://computingforgeeks.com/how-to-install-gitlab-ce-on-ubuntu-linux/
+2. https://docs.docker.com/engine/install/ubuntu/
+3. https://levelup.gitconnected.com/complete-guide-to-create-docker-container-for-your-golang-application-80f3fb59a15e
+4. https://semaphoreci.com/community/tutorials/how-to-deploy-a-go-web-application-with-docker
+5. https://hub.docker.com/repository/docker/sma88/go-web-hello-world
+6. https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+7. https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+8. https://docs.projectcalico.org/getting-started/kubernetes/quickstart
+9. https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create
+10. https://www.replex.io/blog/how-to-install-access-and-add-heapster-metrics-to-the-kubernetes-dashboard
+
 

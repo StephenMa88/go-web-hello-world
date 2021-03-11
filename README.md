@@ -197,10 +197,16 @@ In Task 5, we will be installing docker community edition.
 
 1. Update repository information -> sudo apt update
 2. Installing packages -> sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
-3. Download the docker public signing key -> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-4. Add the docker apt repository -> echo \
+3. Download the docker public signing key
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+6. Add the docker apt repository
+```
+echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 5. Update repository information -> sudo apt update
 6. Install docker -> sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 7. Add current user to docker group -> sudo usermod -aG docker osboxes

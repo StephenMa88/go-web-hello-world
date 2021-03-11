@@ -114,6 +114,7 @@ spec:
 5. Check if they are running -> kubectl get pods -A ; kubectl get service -A
 ![image](https://user-images.githubusercontent.com/29349049/110833855-baa0e300-8251-11eb-8ce5-4b76c92a3cef.png)
 6. You can type into the browser https://127.0.0.1:31081 and it will lead to the login page below.
+
 ![image](https://user-images.githubusercontent.com/29349049/110834421-5a5e7100-8252-11eb-95db-e9e6290e8c90.png)
 
 Please keep this open for our final task.

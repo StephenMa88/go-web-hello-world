@@ -1,0 +1,13 @@
+Name:         dashboard-admin-sa-token-dn5sz
+Namespace:    default
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: dashboard-admin-sa
+              kubernetes.io/service-account.uid: 2aedcf3b-8a25-436d-a953-b60acc0be6fb
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1066 bytes
+namespace:  7 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6InpZZGZ4QjRMaDRsdEdKeVBJSHFydjJZSDZJT1hSaXQ1SjJaQ2ZudllrTncifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRhc2hib2FyZC1hZG1pbi1zYS10b2tlbi1kbjVzeiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJkYXNoYm9hcmQtYWRtaW4tc2EiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIyYWVkY2YzYi04YTI1LTQzNmQtYTk1My1iNjBhY2MwYmU2ZmIiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpkYXNoYm9hcmQtYWRtaW4tc2EifQ.INR991tt5Ct8ksDxOR5sNQ4pHrZYieO95i9HPEVUWNwpiZOEIct4aq7J1mp97AJg-tDsWVv6FxNhssbtY3Xit2LPrOcK5s3hbDaYWHYRhveBlJHKRerl1DglEdwWNjMYEC4FbI3JnCLCTkNHNu7qrPY8SZoYG27-hNDZIK6vM9zKl0UoXh88L2h8YYnZEYAInI6qM-UaIkWcftG8XF0HOGK1kFYSNsN6a4pP_cWFHKZFS9G9PaJZeHKvo6nWZxpd9Ciip2XpfoCOrMNS0VgHREbHynbX-6tmES_WiBSd8yvQOKe6t4fb12Gl3F_VLx3GQ6jHHksl_zH9eBDa72PCRg

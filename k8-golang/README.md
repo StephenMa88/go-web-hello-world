@@ -37,11 +37,12 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 23. Push the code to the REPO -> git push origin master
     1. Type in user and press enter
     2. Type in password and press enter
-24. Remove taint so we can deploy containers on master node -> kubectl taint nodes --all node-role.kubernetes.io/master-
-25. Change ownership of file -> sudo chown $(id -u):$(id -g) /etc/kubernetes/kubelet.conf
-26. Deploy tigera container -> kubectl apply -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
-27. Deploy custom resouces for tigera -> kubectl apply -f https://docs.projectcalico.org/manifests/custom-resources.yaml
-28. Check status of pods and services -> kubectl get pods -A ; kubectl get service -A
+24. Unhold Kubernetes' programs -> sudo apt-mark unhold kubelet kubeadm kubectl
+25. Remove taint so we can deploy containers on master node -> kubectl taint nodes --all node-role.kubernetes.io/master-
+26. Change ownership of file -> sudo chown $(id -u):$(id -g) /etc/kubernetes/kubelet.conf
+27. Deploy tigera container -> kubectl apply -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+28. Deploy custom resouces for tigera -> kubectl apply -f https://docs.projectcalico.org/manifests/custom-resources.yaml
+29. Check status of pods and services -> kubectl get pods -A ; kubectl get service -A
 
 This concludes the task for setting up kubernetes and copying the config file to our git repository folder.
 
